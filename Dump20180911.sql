@@ -30,6 +30,7 @@ CREATE TABLE `advogado` (
   `CNA` int(11) DEFAULT NULL,
   `Especializacao` varchar(50) DEFAULT NULL,
   `Email` text,
+  `Tipo` varchar(50) DEFAULT NULL,
   `Senha` text,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -42,60 +43,6 @@ CREATE TABLE `advogado` (
 LOCK TABLES `advogado` WRITE;
 /*!40000 ALTER TABLE `advogado` DISABLE KEYS */;
 /*!40000 ALTER TABLE `advogado` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `clientadv`
---
-
-DROP TABLE IF EXISTS `clientadv`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `clientadv` (
-  `ID_adv` int(11) DEFAULT NULL,
-  `ID_Client` int(11) DEFAULT NULL,
-  KEY `ID_adv` (`ID_adv`),
-  KEY `ID_Client` (`ID_Client`),
-  CONSTRAINT `clientadv_ibfk_1` FOREIGN KEY (`ID_adv`) REFERENCES `advogado` (`ID`),
-  CONSTRAINT `clientadv_ibfk_2` FOREIGN KEY (`ID_Client`) REFERENCES `cliente` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `clientadv`
---
-
-LOCK TABLES `clientadv` WRITE;
-/*!40000 ALTER TABLE `clientadv` DISABLE KEYS */;
-/*!40000 ALTER TABLE `clientadv` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `cliente`
---
-
-DROP TABLE IF EXISTS `cliente`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `cliente` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Nome` varchar(50) NOT NULL,
-  `Endereco` varchar(50) DEFAULT NULL,
-  `Telefone` int(11) DEFAULT NULL,
-  `CPF` int(11) NOT NULL,
-  `Email` text NOT NULL,
-  `Senha` text NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `cliente`
---
-
-LOCK TABLES `cliente` WRITE;
-/*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-/*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -136,12 +83,12 @@ CREATE TABLE `processos` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Nome` varchar(50) DEFAULT NULL,
   `ID_adv` int(11) DEFAULT NULL,
-  `ID_Client` int(11) DEFAULT NULL,
+  `ID_User` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `ID_adv` (`ID_adv`),
-  KEY `ID_Client` (`ID_Client`),
+  KEY `ID_User` (`ID_User`),
   CONSTRAINT `processos_ibfk_1` FOREIGN KEY (`ID_adv`) REFERENCES `advogado` (`ID`),
-  CONSTRAINT `processos_ibfk_2` FOREIGN KEY (`ID_Client`) REFERENCES `cliente` (`ID`)
+  CONSTRAINT `processos_ibfk_2` FOREIGN KEY (`ID_User`) REFERENCES `usuarios` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -153,6 +100,62 @@ LOCK TABLES `processos` WRITE;
 /*!40000 ALTER TABLE `processos` DISABLE KEYS */;
 /*!40000 ALTER TABLE `processos` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `useradv`
+--
+
+DROP TABLE IF EXISTS `useradv`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `useradv` (
+  `ID_adv` int(11) DEFAULT NULL,
+  `ID_User` int(11) DEFAULT NULL,
+  KEY `ID_adv` (`ID_adv`),
+  KEY `ID_User` (`ID_User`),
+  CONSTRAINT `useradv_ibfk_1` FOREIGN KEY (`ID_adv`) REFERENCES `advogado` (`ID`),
+  CONSTRAINT `useradv_ibfk_2` FOREIGN KEY (`ID_User`) REFERENCES `usuarios` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `useradv`
+--
+
+LOCK TABLES `useradv` WRITE;
+/*!40000 ALTER TABLE `useradv` DISABLE KEYS */;
+/*!40000 ALTER TABLE `useradv` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `usuarios`
+--
+
+DROP TABLE IF EXISTS `usuarios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `usuarios` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Nome` varchar(50) NOT NULL,
+  `Endereco` varchar(50) DEFAULT NULL,
+  `Telefone` int(11) DEFAULT NULL,
+  `CPF` int(11) NOT NULL,
+  `Email` text NOT NULL,
+  `Tipo` varchar(50) DEFAULT NULL,
+  `Senha` text NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuarios`
+--
+
+LOCK TABLES `usuarios` WRITE;
+/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+INSERT INTO `usuarios` VALUES (1,'joao','Fome',11111,5632441,'joaomagdaleno.14@hotmail.com','User','123456');
+/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -163,4 +166,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-09-04 20:56:04
+-- Dump completed on 2018-09-11 20:41:58
