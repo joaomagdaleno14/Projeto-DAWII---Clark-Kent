@@ -84,13 +84,9 @@ class Usuarios {
 		}
 		return $retornito;
 	}
-<<<<<<< HEAD
 
 	public function loginUser(){
 		$sql = "SELECT * FROM $this->tabela WHERE Email= '$this->Email' and Senha = '$this->Senha' and Tipo='User'";
-=======
-	
-	
 	
 	public function loginAdv(){
 		$sql = "SELECT * FROM $this->tabela WHERE Email= '$this->Email' and Senha = '$this->Senha' and Tipo='adv'";
@@ -110,7 +106,7 @@ class Usuarios {
 	}
 	public function loginUser(){
 		$sql = "SELECT * FROM $this->tabela WHERE Email= '$this->Email' and Senha = '$this->Senha' and Tipo='user'";
->>>>>>> 3b83444527cdd68d32d2edc799ece9ddfccbbfc8
+
 		echo $sql;
 		$retorno = mysqli_query($this->conexao, $sql);
 		$resultado = mysqli_fetch_assoc($retorno);
