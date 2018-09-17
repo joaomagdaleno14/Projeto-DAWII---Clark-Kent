@@ -9,7 +9,7 @@
 		$objDocumentos->ID=$ID;
 		//print_r($objProdutos->retornarUnico());
 		$variavel = $objDocumentos->retornarUnico();
-		
+
 		$objProcessos = new Processos();
 		$resultado = $objProcessos->listar();
 	}
@@ -35,12 +35,12 @@
 					else
 						echo "<option value='$dados->ID'>$dados->Nome</option>";
 				}
-				
+
 				?>
 					</select>
 				</div>
 			</div>
-			
+
 	<div >
 				<label >Descrição</label>
 				<div >

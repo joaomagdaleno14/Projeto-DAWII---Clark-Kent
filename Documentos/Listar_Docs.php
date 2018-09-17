@@ -2,8 +2,8 @@
 	include_once("../Class/Carregar.class.php");
 	$objProdutos = new Documentos();
 	$resultado = $objProdutos->listar();
-	
-	
+
+
 ?>
 
 	<table>

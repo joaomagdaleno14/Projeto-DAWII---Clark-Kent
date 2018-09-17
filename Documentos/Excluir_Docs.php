@@ -1,5 +1,5 @@
 <?php
-	include_once("../../Class/Carregar.class.php");
+	include_once("../Class/Carregar.class.php");
 	if(!$_GET["ID"]){
 		header("location:Listar_Docs.php");
 	}
@@ -11,10 +11,10 @@
 		if($retorno){
 			echo "Exluido com sucesso!!!";
 		}
-			
+
 		else{
 			echo "PARABENS!!! não foi excluido <3";
 		}
-			
+
 	}
 ?>

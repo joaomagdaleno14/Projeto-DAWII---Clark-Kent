@@ -1,12 +1,12 @@
 <?php
-	include_once("../../Class/Carregar.class.php");
+	include_once("../Class/Carregar.class.php");
 	$objCategorias = new Processos();
 	$resultado = $objCategorias->listar();
 
 ?>
             <h4> Inserindo um produto</h4>
 
-	<form method="POST" action="Inserir_P_Ok.php" enctype="multipart/form-data">
+	<form method="POST" action="Inserir_D_Ok.php" enctype="multipart/form-data">
 		<div >
 			<label>Nome</label>
             <div>
