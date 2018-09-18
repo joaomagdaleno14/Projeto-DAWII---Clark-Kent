@@ -7,7 +7,7 @@
 		$ID = $_GET["ID"];
 		$objUsuarios = new Usuarios();
 		$objUsuarios->ID=$ID;
-		//print_r($objUsuarios->retornarUnico());
+
 		$variavel = $objUsuarios->retornarUnico();
 	}
 ?>
@@ -46,7 +46,7 @@
 	<div>
                               <label >Tipo</label>
                               <div >
-							  <input type="text" name="Tipo"value="<?php echo $variavel->Tipo;?>"/> 
+							  <input type="text" name="Tipo"value="<?php echo $variavel->Tipo;?>"/>
 							  </div>
                           </div>
 	 <div>
