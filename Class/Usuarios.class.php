@@ -38,6 +38,7 @@ class Usuarios {
 		values('$this->Nome','$this->Email',$this->CPF,'$this->Endereco',$this->Telefone,'$this->Tipo','$this->Senha')";
 		$retorno = mysqli_query($this->conexao, $sql);
 		return $retorno;
+		
 	}
 	
 	public function listar(){
@@ -84,9 +85,6 @@ class Usuarios {
 		}
 		return $retornito;
 	}
-
-	public function loginUser(){
-		$sql = "SELECT * FROM $this->tabela WHERE Email= '$this->Email' and Senha = '$this->Senha' and Tipo='User'";
 	
 	public function loginAdv(){
 		$sql = "SELECT * FROM $this->tabela WHERE Email= '$this->Email' and Senha = '$this->Senha' and Tipo='adv'";
