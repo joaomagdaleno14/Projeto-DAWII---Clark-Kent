@@ -1,11 +1,12 @@
 <?php
-class Usuarios {
+class Advogados {
 	private $ID;
 	private $Nome;
 	private $Email;
-	private $CPF;
+	private $CNA;
 	private $Endereco;
 	private $Telefone;
+	private $Especializacao;
 	private $Tipo;
 	private $Senha;
 	
@@ -17,7 +18,7 @@ class Usuarios {
 	public function __construct(){
 		$this->conexao = mysqli_connect("127.0.0.1", "root","","banquinho2") 
 		or die ("Erro ao conectar");
-		$this->tabela = "Usuarios";
+		$this->tabela = "Advogado";
 	}
 	// O construtor serve para 2 coisas, fazer a conexão com o banco e e definir que tabela será usada;
 	public function __destruct(){
@@ -34,8 +35,8 @@ class Usuarios {
 	// O Set altera algum valor de um campo/atributo da classe;
 	
 	public function inserir(){
-		$sql = "INSERT INTO $this->tabela(Nome, Email, CPF, Endereco, Telefone, Tipo, Senha)
-		values('$this->Nome','$this->Email',$this->CPF,'$this->Endereco',$this->Telefone,'$this->Tipo','$this->Senha')";
+		$sql = "INSERT INTO $this->tabela(Nome, Email, CPF, Endereco, Telefone, Especializacao, Tipo, Senha)
+		values('$this->Nome','$this->Email',$this->CNA,'$this->Endereco',$this->Telefone,'$this->Tipo','$this->Especializacao','$this->Senha')";
 		$retorno = mysqli_query($this->conexao, $sql);
 		return $retorno;
 	}
@@ -53,6 +54,7 @@ class Usuarios {
 			$obj->CPF=$res["CPF"];
 			$obj->Endereco=$res["Endereco"];
 			$obj->Telefone=$res["Telefone"];
+			$obj->Especializacao=$res["Especializacao"];
 			$obj->Tipo=$res["Tipo"];
 			$obj->Senha=$res["Senha"];
 			
@@ -74,6 +76,7 @@ class Usuarios {
 			$objCategorias->CPF = $resultado['CPF'];
 			$objCategorias->Endereco = $resultado['Endereco'];
 			$objCategorias->Telefone = $resultado['Telefone'];
+			$objCategorias->Especializacao = $resultado['Especializacao'];
 			$ObjCategorias->Tipo = $resultado['Tipo'];
 			$objCategorias->Senha = $resultado['Senha'];
 			
@@ -84,34 +87,16 @@ class Usuarios {
 		}
 		return $retornito;
 	}
-
-	public function loginUser(){
-		$sql = "SELECT * FROM $this->tabela WHERE Email= '$this->Email' and Senha = '$this->Senha' and Tipo='User'";
+	
+	
 	
 	public function loginAdv(){
-		$sql = "SELECT * FROM $this->tabela WHERE Email= '$this->Email' and Senha = '$this->Senha' and Tipo='adv'";
+		$sql = "SELECT * FROM $this->tabela WHERE Email= '$this->Email' and Senha = '$this->Senha' and Tipo='Adv'";
 		echo $sql;
 		$retorno = mysqli_query($this->conexao, $sql);
 		$resultado = mysqli_fetch_assoc($retorno);
 		if($resultado){
-			$objCategorias = new Usuarios();
-			$objCategorias->ID = $resultado['ID'];
-			
-			$retornito = $objCategorias;
-		}
-		else{
-			$retornito = NULL;
-		}
-		return $retornito;
-	}
-	public function loginUser(){
-		$sql = "SELECT * FROM $this->tabela WHERE Email= '$this->Email' and Senha = '$this->Senha' and Tipo='user'";
-
-		echo $sql;
-		$retorno = mysqli_query($this->conexao, $sql);
-		$resultado = mysqli_fetch_assoc($retorno);
-		if($resultado){
-			$objCategorias = new Usuarios();
+			$objCategorias = new Advogado();
 			$objCategorias->ID = $resultado['ID'];
 			
 			$retornito = $objCategorias;
@@ -123,7 +108,7 @@ class Usuarios {
 	}
 	
 	public function editar(){
-		$sql = "UPDATE $this->tabela SET Nome = '$this->Nome', Email = '$this->Email', CPF = '$this->CPF', Endereco = '$this->Endereco', Telefone = $this->Telefone, Tipo = '$this->Tipo', Senha = '$this->Senha' WHERE ID = $this->ID";
+		$sql = "UPDATE $this->tabela SET Nome = '$this->Nome', Email = '$this->Email', CPF = '$this->CPF', Endereco = '$this->Endereco', Telefone = $this->Telefone, Tipo = '$this->Tipo', Especializacao = '$this->Especializacao', Senha = '$this->Senha' WHERE ID = $this->ID";
 		$retorno = mysqli_query($this->conexao, $sql);
 		return $retorno;
 	}
